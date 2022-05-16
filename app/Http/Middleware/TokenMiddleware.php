@@ -16,7 +16,7 @@ class TokenMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $access_token = getallheaders()['access_token'];
+        $access_token = getallheaders()['api_key'];
         return $access_token == config('adminetic.API_KEY', env('API_KEY', 'BA673A414C3B44C98478BB5CF10A0F832574090C')) ? $next($request) : response()->json(['message' => 'Invalid Token'], 401);
     }
 }
